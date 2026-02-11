@@ -3,6 +3,11 @@ const SETTINGS = {
     INTERVAL_MS: 15000    // 15 Seconds
 };
 
+const savedPlaceId = localStorage.getItem('dashboard_place_id');
+if (savedPlaceId) {
+    SETTINGS.PLACE_ID = parseInt(savedPlaceId, 10);
+}
+
 async function syncDashboard() {
     const statusLabel = document.getElementById('status-label');
     
@@ -69,3 +74,51 @@ syncDashboard();
 setInterval(syncDashboard, SETTINGS.INTERVAL_MS); 
 
 document.getElementById('refresh-btn')?.addEventListener('click', syncDashboard);
+
+function setupPlaceIdEditor() {
+    const footer = document.querySelector('.status-footer');
+    if (!footer) return;
+
+    const editorContainer = document.createElement('div');
+    editorContainer.style.display = 'flex';
+    editorContainer.style.alignItems = 'center';
+    editorContainer.style.gap = '10px';
+
+    const placeIdInput = document.createElement('input');
+    placeIdInput.type = 'text';
+    placeIdInput.id = 'place-id-input';
+    placeIdInput.placeholder = 'Enter Place ID';
+    placeIdInput.value = SETTINGS.PLACE_ID;
+    placeIdInput.style.cssText = `
+        padding: 10px;
+        border: 1px solid var(--tile-bg);
+        border-radius: 8px;
+        background-color: var(--bg-dark);
+        color: var(--text-main);
+        width: 150px;
+    `;
+
+    const saveBtn = document.createElement('button');
+    saveBtn.id = 'save-place-id-btn';
+    saveBtn.innerText = 'Save';
+    saveBtn.style.cssText = `
+        background: var(--accent-blue); border: none; color: rgb(0, 0, 0); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: background-color var(--transition-speed);
+    `;
+
+    saveBtn.addEventListener('click', () => {
+        const newPlaceId = parseInt(placeIdInput.value, 10);
+        if (!isNaN(newPlaceId) && newPlaceId > 0) {
+            SETTINGS.PLACE_ID = newPlaceId;
+            localStorage.setItem('dashboard_place_id', newPlaceId);
+            syncDashboard();
+        } else {
+            alert('Please enter a valid Place ID.');
+        }
+    });
+
+    editorContainer.appendChild(placeIdInput);
+    editorContainer.appendChild(saveBtn);
+    footer.appendChild(editorContainer);
+}
+
+setupPlaceIdEditor();
