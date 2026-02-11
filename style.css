@@ -29,15 +29,13 @@ body {
     width: 100%;
     max-width: 1000px;
     gap: 15px;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto repeat(3, auto) 200px auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto 200px auto;
     grid-template-areas: 
-        "head head head head"
-        "act act act act"
-        "vis vis vis vis"
-        "fav fav fav fav"
-        "char char char char"
-        "foot foot foot foot";
+        "head head head"
+        "act vis fav"
+        "char char char"
+        "foot foot foot";
 }
 /* 3.flexbox tile styling*/
 .tile {
@@ -87,14 +85,14 @@ body {
 /* 6. responsive webpage for all devices (resize) */
 @media (max-width: 768px) {
     .dashboard-container {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         grid-template-areas: 
-            "head head"
-            "act act"
-            "vis vis"
-            "fav fav"
-            "char char"
-            "foot foot";
+            "head"
+            "act"
+            "vis"
+            "fav"
+            "char"
+            "foot";
     }
 }
 /* 7. custom chart bars */
