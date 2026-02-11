@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=Zalando+Sans+Expanded:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="dashboard-container">
+        <header class="tile header-tile">
+            <div class="game-info">
+                <img id="game-icon" src="" alt="Icon" class="icon-pulse">
+                <div>
+                    <h1 id="game-title">Loading...</h1>
+                    <p id="game-creator">Connecting to API</p>
+                </div>
+            </div>
+            <div class="live-indicator">
+                <span class="dot"></span> LIVE DATA
+            </div>
+        </header>
+<section class="tile stat-tile">
+            <h3>Active Players</h3>
+            <p class="stat-value" data-stat="playing">0</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="player-bar"></div>
+            </div>
+        </section>
+ <section class="tile stat-tile">
+            <h3>Total Visits</h3>
+            <p class="stat-value" data-stat="visits">0</p>
+        </section>
+ <section class="tile stat-tile">
+            <h3>Favorites</h3>
+            <p class="stat-value" data-stat="favorites">0</p>
+        </section>
+<section class="tile chart-tile">
+            <h3>Activity Trends (24h)</h3>
+            <div class="placeholder-chart">
+                <div class="bar" style="height: 40%" data-value="Low"></div>
+                <div class="bar" style="height: 65%" data-value="Med"></div>
+                <div class="bar" style="height: 90%" data-value="Peak"></div>
+                <div class="bar" style="height: 55%" data-value="Med"></div>
+                <div class="bar" style="height: 100%" data-value="Max"></div>
+            </div>
+        </section>
+<footer class="tile status-footer">
+            <p>System Status: <span id="status-label">Initializing</span></p>
+            <button id="refresh-btn">Force Sync</button>
+        </footer>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
